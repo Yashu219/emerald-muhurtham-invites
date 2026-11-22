@@ -16,12 +16,20 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        royal:
+          "relative overflow-hidden rounded-full bg-gold-gradient bg-[length:200%_100%] font-display font-semibold uppercase tracking-[0.12em] sm:tracking-[0.18em] text-emerald-deep shadow-gold hover:animate-shimmer hover:brightness-110 active:scale-[0.98] transition-all",
+        regal:
+          "rounded-full border border-gold/60 bg-emerald-deep/40 font-display uppercase tracking-[0.16em] text-gold backdrop-blur-sm hover:bg-gold/15 hover:border-gold active:scale-[0.98] transition-all",
+        maroon:
+          "rounded-full bg-maroon-gradient font-display uppercase tracking-[0.16em] text-ivory shadow-deep ring-1 ring-gold/40 hover:ring-gold hover:brightness-110 active:scale-[0.98] transition-all",
       },
       size: {
         default: "h-9 px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
+        xl: "min-h-14 whitespace-normal px-6 py-3 text-center text-xs leading-snug sm:px-10 sm:text-sm",
+        pill: "h-11 px-6 text-xs",
       },
     },
     defaultVariants: {

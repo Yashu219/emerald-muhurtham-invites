@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- All invitation content (names, dates, venues, events, photos, WhatsApp number, music, messages) lives in `src/config/wedding.ts`; components read from it and never hardcode wedding details — so the family can edit one file.
+- Dates are ISO strings with an explicit offset and are formatted by `src/lib/wedding-dates.ts` (manual, fixed time zone) instead of `Intl`, so server and browser render identical text.
+- Invitation sections live in `src/components/invitation/`; decorative motifs are hand-drawn SVGs in `Ornaments.tsx` coloured only through CSS tokens.

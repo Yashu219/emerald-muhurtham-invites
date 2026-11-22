@@ -1,9 +1,6 @@
 /*
  * Tailwind v4 entry: config lives here, with no tailwind.config.js or PostCSS plugin.
- * - Keep every @import in this top block, above @theme and the rest of the file. Install an
- *   npm package before @importing its CSS. Never @import a remote URL (web fonts, CDN CSS): the
- *   build resolves @import from the filesystem. Load those with a <link> in the head() of
- *   src/routes/__root.tsx and name the family in a --font-* token in @theme inline below.
+ * Keep every @import in this top block. Web fonts load via <link> in src/routes/__root.tsx.
  */
 @import "tailwindcss" source(none);
 @source "../src";
@@ -12,24 +9,17 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
- *
- * The design lives in this file: oklch color tokens on the shadcn variables
- * (--background, --foreground, --primary, --secondary, --muted, --accent, ...) plus
- * new tokens as needed, font tokens, and custom styles and animations.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * Design system — "Emerald Noir Kalyanam"
+ * Deep emerald night, antique temple gold, ivory & cream, rich maroon accents.
  */
 
 @theme inline {
+  --font-display: "Cinzel", "Cormorant Garamond", serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-script: "Pinyon Script", "Cormorant Garamond", cursive;
+  --font-sans: "Cormorant Garamond", Georgia, serif;
+  --font-indic: "Noto Serif Kannada", "Cormorant Garamond", serif;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -70,86 +60,436 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Wedding palette */
+  --color-emerald: var(--emerald);
+  --color-emerald-deep: var(--emerald-deep);
+  --color-emerald-soft: var(--emerald-soft);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-deep: var(--gold-deep);
+  --color-ivory: var(--ivory);
+  --color-cream: var(--cream);
+  --color-maroon: var(--maroon);
+  --color-maroon-deep: var(--maroon-deep);
+  --color-jasmine: var(--jasmine);
+  --color-leaf: var(--leaf);
+  --color-leaf-dark: var(--leaf-dark);
+  --color-marigold: var(--marigold);
+  --color-flame: var(--flame);
+  --color-flame-core: var(--flame-core);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
-}
+  --radius: 0.75rem;
 
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --emerald-deep: oklch(0.17 0.04 168);
+  --emerald: oklch(0.23 0.055 166);
+  --emerald-soft: oklch(0.3 0.06 164);
+  --gold: oklch(0.78 0.12 82);
+  --gold-light: oklch(0.9 0.09 90);
+  --gold-deep: oklch(0.58 0.11 70);
+  --ivory: oklch(0.97 0.02 88);
+  --cream: oklch(0.92 0.04 85);
+  --maroon: oklch(0.4 0.14 20);
+  --maroon-deep: oklch(0.28 0.1 18);
+  --jasmine: oklch(0.98 0.015 95);
+  --leaf: oklch(0.52 0.13 145);
+  --leaf-dark: oklch(0.38 0.1 150);
+  --marigold: oklch(0.76 0.17 62);
+  --flame: oklch(0.8 0.17 65);
+  --flame-core: oklch(0.96 0.08 95);
+
+  --background: var(--emerald);
+  --foreground: var(--ivory);
+  --card: oklch(0.27 0.058 165);
+  --card-foreground: var(--ivory);
+  --popover: var(--emerald-deep);
+  --popover-foreground: var(--ivory);
+  --primary: var(--gold);
+  --primary-foreground: var(--emerald-deep);
+  --secondary: var(--maroon);
+  --secondary-foreground: var(--ivory);
+  --muted: var(--emerald-soft);
+  --muted-foreground: oklch(0.84 0.04 86);
+  --accent: var(--maroon);
+  --accent-foreground: var(--ivory);
+  --destructive: oklch(0.6 0.2 27);
+  --destructive-foreground: var(--ivory);
+  --border: oklch(0.78 0.12 82 / 30%);
+  --input: oklch(0.78 0.12 82 / 35%);
+  --ring: var(--gold);
+  --chart-1: var(--gold);
+  --chart-2: var(--maroon);
+  --chart-3: var(--leaf);
+  --chart-4: var(--marigold);
+  --chart-5: var(--cream);
+  --sidebar: var(--emerald-deep);
+  --sidebar-foreground: var(--ivory);
+  --sidebar-primary: var(--gold);
+  --sidebar-primary-foreground: var(--emerald-deep);
+  --sidebar-accent: var(--emerald-soft);
+  --sidebar-accent-foreground: var(--ivory);
+  --sidebar-border: oklch(0.78 0.12 82 / 25%);
+  --sidebar-ring: var(--gold);
+
+  --gradient-gold: linear-gradient(
+    135deg,
+    var(--gold-deep) 0%,
+    var(--gold) 28%,
+    var(--gold-light) 50%,
+    var(--gold) 72%,
+    var(--gold-deep) 100%
+  );
+  --gradient-emerald: radial-gradient(
+    ellipse at top,
+    var(--emerald-soft) 0%,
+    var(--emerald) 45%,
+    var(--emerald-deep) 100%
+  );
+  --gradient-maroon: linear-gradient(160deg, var(--maroon) 0%, var(--maroon-deep) 100%);
+  --gradient-veil: linear-gradient(
+    to bottom,
+    oklch(0.17 0.04 168 / 0%) 0%,
+    oklch(0.17 0.04 168 / 85%) 100%
+  );
+  --glow-lamp: radial-gradient(
+    circle,
+    oklch(0.9 0.12 85 / 55%) 0%,
+    oklch(0.8 0.15 70 / 15%) 40%,
+    transparent 70%
+  );
+  --shadow-gold: 0 0 0 1px oklch(0.78 0.12 82 / 35%), 0 20px 50px -20px oklch(0.78 0.12 82 / 35%);
+  --shadow-deep: 0 30px 60px -25px oklch(0.1 0.03 168 / 80%);
+  --ease-royal: cubic-bezier(0.65, 0.05, 0.2, 1);
 }
 
 @layer base {
   * {
     border-color: var(--color-border);
   }
-
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+  html {
+    scroll-behavior: smooth;
   }
+  body {
+    background: var(--emerald-deep);
+    color: var(--color-foreground);
+    font-family: var(--font-serif);
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+  ::selection {
+    background: oklch(0.78 0.12 82 / 40%);
+    color: var(--ivory);
+  }
+}
+
+/* ---------- Surfaces & text ---------- */
+
+@utility bg-emerald-glow {
+  background: var(--gradient-emerald);
+}
+
+@utility bg-gold-gradient {
+  background: var(--gradient-gold);
+}
+
+@utility bg-maroon-gradient {
+  background: var(--gradient-maroon);
+}
+
+@utility bg-veil {
+  background: var(--gradient-veil);
+}
+
+@utility text-gold-gradient {
+  background: var(--gradient-gold);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility shadow-gold {
+  box-shadow: var(--shadow-gold);
+}
+
+@utility shadow-deep {
+  box-shadow: var(--shadow-deep);
+}
+
+/* Faint kolam dot-lattice for section backgrounds */
+@utility bg-kolam {
+  background-image:
+    radial-gradient(circle at center, oklch(0.78 0.12 82 / 14%) 1.2px, transparent 1.6px),
+    radial-gradient(circle at center, oklch(0.78 0.12 82 / 7%) 1px, transparent 1.4px);
+  background-size:
+    28px 28px,
+    28px 28px;
+  background-position:
+    0 0,
+    14px 14px;
+}
+
+/* Temple-jewellery scalloped gold band */
+@utility temple-band {
+  height: 18px;
+  background: var(--gradient-gold);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='18' viewBox='0 0 36 18'%3E%3Cpath d='M0 0h36v3H0z'/%3E%3Cpath d='M0 4.5h36v1H0z'/%3E%3Cpath d='M3 7a15 9 0 0 0 30 0z' fill='none' stroke='black' stroke-width='1.4'/%3E%3Ccircle cx='18' cy='12.5' r='2.6'/%3E%3Ccircle cx='18' cy='16.6' r='1.2'/%3E%3Ccircle cx='0' cy='9' r='1.6'/%3E%3Ccircle cx='36' cy='9' r='1.6'/%3E%3C/svg%3E")
+    repeat-x center / 36px 18px;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='18' viewBox='0 0 36 18'%3E%3Cpath d='M0 0h36v3H0z'/%3E%3Cpath d='M0 4.5h36v1H0z'/%3E%3Cpath d='M3 7a15 9 0 0 0 30 0z' fill='none' stroke='black' stroke-width='1.4'/%3E%3Ccircle cx='18' cy='12.5' r='2.6'/%3E%3Ccircle cx='18' cy='16.6' r='1.2'/%3E%3Ccircle cx='0' cy='9' r='1.6'/%3E%3Ccircle cx='36' cy='9' r='1.6'/%3E%3C/svg%3E")
+    repeat-x center / 36px 18px;
+}
+
+/* Gold ornamental frame for cards */
+@utility frame-gold {
+  position: relative;
+  border: 1px solid oklch(0.78 0.12 82 / 45%);
+  box-shadow:
+    inset 0 0 0 5px var(--emerald-deep),
+    inset 0 0 0 6px oklch(0.78 0.12 82 / 30%),
+    var(--shadow-deep);
+}
+
+/* Temple arch top for images */
+@utility arch-top {
+  border-radius: 50% 50% var(--radius) var(--radius) / 32% 32% var(--radius) var(--radius);
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    transform: scale(1, 1) rotate(-1deg);
+    opacity: 1;
+  }
+  25% {
+    transform: scale(0.94, 1.06) rotate(1.5deg);
+    opacity: 0.92;
+  }
+  50% {
+    transform: scale(1.04, 0.95) rotate(-2deg);
+  }
+  75% {
+    transform: scale(0.97, 1.04) rotate(1deg);
+    opacity: 0.95;
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes bell-swing {
+  0%,
+  100% {
+    transform: rotate(6deg);
+  }
+  50% {
+    transform: rotate(-6deg);
+  }
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(var(--drift, 40px), 110vh, 0) rotate(var(--spin, 540deg));
+    opacity: 0;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.3) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 oklch(0.78 0.12 82 / 45%),
+      var(--shadow-deep);
+  }
+  50% {
+    box-shadow:
+      0 0 0 12px oklch(0.78 0.12 82 / 0%),
+      var(--shadow-deep);
+  }
+}
+
+@keyframes eq {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+@utility animate-shimmer {
+  animation: shimmer 6s linear infinite;
+}
+
+@utility animate-flicker {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: flicker 1.6s ease-in-out infinite;
+}
+
+@utility animate-glow {
+  animation: glow-pulse 3.2s ease-in-out infinite;
+}
+
+@utility animate-bell {
+  transform-origin: 50% 0;
+  animation: bell-swing 3.6s ease-in-out infinite;
+}
+
+@utility animate-rise {
+  animation: rise-in 1.1s var(--ease-royal) both;
+}
+
+@utility animate-soft-pulse {
+  animation: soft-pulse 2.4s ease-in-out infinite;
+}
+
+@utility animate-eq {
+  transform-origin: bottom;
+  animation: eq 0.9s ease-in-out infinite;
+}
+
+@utility animate-ken-burns {
+  animation: ken-burns 9s ease-out both;
+}
+
+/* Jasmine petal */
+@utility petal {
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 14px;
+  border-radius: 80% 0 80% 0;
+  background: radial-gradient(circle at 30% 30%, var(--jasmine), var(--cream));
+  box-shadow: 0 0 6px oklch(0.98 0.015 95 / 40%);
+  animation: petal-fall linear infinite;
+  will-change: transform;
+}
+
+@utility sparkle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--gold-light);
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  filter: drop-shadow(0 0 4px var(--gold));
+  animation: twinkle ease-in-out infinite;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 1s var(--ease-royal),
+    transform 1s var(--ease-royal);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Temple doors */
+.door-stage {
+  perspective: 2000px;
+}
+.door-leaf {
+  transition: transform 2.4s var(--ease-royal);
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+.door-left {
+  transform-origin: left center;
+}
+.door-right {
+  transform-origin: right center;
+}
+.doors-open .door-left {
+  transform: rotateY(-108deg);
+}
+.doors-open .door-right {
+  transform: rotateY(108deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .petal,
+  .sparkle {
+    display: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .door-leaf {
+    transition-duration: 0.6s;
+  }
+}
+
+@utility bg-lamp-glow {
+  background: var(--glow-lamp);
 }
